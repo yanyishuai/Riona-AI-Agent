@@ -92,6 +92,13 @@ describe('API routes', () => {
       expect(res.body.features).toBeUndefined();
     });
 
+    test('GET /api/hello returns ok: true', async () => {
+      const res = await request(app).get('/api/hello');
+      expect(res.status).toBe(200);
+      expect(res.headers['content-type']).toMatch(/application\/json/);
+      expect(res.body).toEqual({ ok: true });
+    });
+
     test('GET /api/docs lists API endpoints', async () => {
       const res = await request(app).get('/api/docs');
       expect(res.status).toBe(200);
